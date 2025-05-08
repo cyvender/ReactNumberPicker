@@ -17,7 +17,7 @@ class SelectedNumbers extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.props.selectedNumbers.map(sn =>
+                                    {this.props.numbers.filter(n => n.isSelected).map(sn =>
                                         <tr>
                                             <td>{sn.number}</td>
                                             <td>

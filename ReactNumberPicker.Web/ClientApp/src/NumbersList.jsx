@@ -8,10 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 class NumbersList extends React.Component {
 
     state = {
-        numbers: [],
-        selectedNumbers: []
+        numbers: []
     }
-
 
     onAddClick = () => {
         const numberItem = {
@@ -31,22 +29,13 @@ class NumbersList extends React.Component {
         const selectedNumber = copy.find(c => c.id === n.id);
         selectedNumber.isSelected = !selectedNumber.isSelected;
         this.setState({numbers: copy});
-
-        const { selectedNumbers } = this.state;
-        let selectedNumbersCopy = [...selectedNumbers]
-        if(!selectedNumbers.includes(n)) {
-            selectedNumbersCopy.push(n);
-        } else {
-            selectedNumbersCopy = selectedNumbers.filter(sn => sn.id !== n.id);
-        }
-        this.setState({selectedNumbers: selectedNumbersCopy})
     }
 
     onLockClick = (sn) => {
-        const copy = [...this.state.selectedNumbers];
+        const copy = [...this.state.numbers];
         const selectedNumber = copy.find(c => c.id === sn.id);
         selectedNumber.isLocked = !selectedNumber.isLocked;
-        this.setState({selectedNumbers: copy}); 
+        this.setState({numbers: copy}); 
     }
 
     render() {
@@ -84,7 +73,7 @@ class NumbersList extends React.Component {
                     </div>
                 </div>
                 <SelectedNumbers 
-                selectedNumbers={this.state.selectedNumbers} 
+                numbers={this.state.numbers} 
                 onLockClick={this.onLockClick}/>
             </>
         )
